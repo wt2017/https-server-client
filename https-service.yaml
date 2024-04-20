@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: https-service
+  name: https-service
+spec:
+  ports:
+  - name: frontendport
+    port: 88
+    targetPort: backendport
+  selector:
+    app: https-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: https-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: https-service
+  template:
+    metadata:
+      labels:
+        app: https-service
+    spec:
+      containers:
+      - name: https-service
+        securityContext:
+          privileged: true
+        image: localhost/https-service:v0.0.1
+        ports:
+        - containerPort: 8443
+          name: backendport
