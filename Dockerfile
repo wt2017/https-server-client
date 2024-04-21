@@ -1,4 +1,4 @@
-FROM localhost/fedora-devel:v0.0.2
+FROM localhost/fedora-devel:v0.0.3
 
 RUN mkdir wyou
 WORKDIR /wyou

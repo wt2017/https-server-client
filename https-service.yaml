@@ -5,6 +5,7 @@ metadata:
     app: https-service
   name: https-service
 spec:
+  clusterIP: 10.101.166.126
   ports:
   - name: frontendport
     port: 88
@@ -26,6 +27,7 @@ spec:
       labels:
         app: https-service
     spec:
+      nodeName: vfanny
       containers:
       - name: https-service
         securityContext:

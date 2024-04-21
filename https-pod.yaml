@@ -6,7 +6,8 @@ metadata:
 spec:
  #hostNetwork: true
  hostIPC: true
- nodeName: vfanny
+ #nodeName: vfanny
+ nodeName: vmelody
  containers:
  - name: https-container
    #image: docker.io/library/fedora
@@ -14,9 +15,9 @@ spec:
    imagePullPolicy: Never
    securityContext:
      privileged: true
-   command: [ "./https_server" ]
-   #command: [ "/bin/bash", "-c", "--" ]       # You need to run some task inside a container to keep it running
-   #args: [ "while true; do sleep 10; done;" ]
+   #command: [ "./https_server" ]
+   command: [ "/bin/bash", "-c", "--" ]       # You need to run some task inside a container to keep it running
+   args: [ "while true; do sleep 10; done;" ]
  restartPolicy: Never
  #tolerations:
  #- key: "key"
