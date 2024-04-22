@@ -32,7 +32,7 @@ spec:
       - name: https-service
         securityContext:
           privileged: true
-        image: localhost/https-service:v0.0.1
+        image: localhost/https-service:v0.0.2
         ports:
         - containerPort: 8443
           name: backendport

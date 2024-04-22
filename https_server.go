@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -19,9 +21,17 @@ func main() {
 		ClientAuth: tls.RequireAndVerifyClientCert,
 		ClientCAs:  caCertPool,
 	}
+
+	router := mux.NewRouter()
+	f := func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("response to test\n"))
+	}
+	router.HandleFunc("/test", f).Methods("GET")
+
 	srv := &http.Server{
-		Addr:      ":8443",
-		Handler:   &handler{},
+		Addr: ":8443",
+		//Handler:   &handler{},
+		Handler:   router,
 		TLSConfig: cfg,
 	}
 	log.Fatal(srv.ListenAndServeTLS("server.crt", "server.key"))

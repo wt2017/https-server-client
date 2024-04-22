@@ -11,7 +11,7 @@ spec:
  containers:
  - name: https-container
    #image: docker.io/library/fedora
-   image: localhost/https-service:v0.0.1
+   image: localhost/https-service:v0.0.2
    imagePullPolicy: Never
    securityContext:
      privileged: true
